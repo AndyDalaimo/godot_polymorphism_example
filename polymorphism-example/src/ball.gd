@@ -5,6 +5,8 @@ enum BALL_TYPE {DEFAULT, TYPE1, TYPE2}
 
 @export var ball_type: BALL_TYPE
 
+var can_shoot: bool = true
+
 func _init_ball(_type: BALL_TYPE) -> void:
 	pass
 
@@ -12,11 +14,9 @@ func _init_ball(_type: BALL_TYPE) -> void:
 func _ready() -> void:
 	pass # Replace with function body.
 
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
-
 
 ## Base Abstract function that will be overridden by child classes
 func _shoot(loc: Vector2, impulse_str: float) -> void:
@@ -24,3 +24,9 @@ func _shoot(loc: Vector2, impulse_str: float) -> void:
 	var impulse = imp_direction * impulse_str
 	print("FInal IMp: ", impulse)
 	apply_central_impulse(impulse)
+
+func get_can_shoot() -> bool:
+	return can_shoot
+
+func set_can_shoot(value: bool) -> void:
+	can_shoot = value

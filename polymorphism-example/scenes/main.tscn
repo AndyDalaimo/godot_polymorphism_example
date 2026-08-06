@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0s3isv8f0jh2"]
 
 [ext_resource type="PackedScene" uid="uid://c320r5qr1vffh" path="res://scenes/player/player.tscn" id="1_o5qli"]
-[ext_resource type="PackedScene" uid="uid://dshy3qww8o75q" path="res://scenes/player/camera_controller.tscn" id="1_sugp2"]
+[ext_resource type="Script" uid="uid://dsbajg1xxa38p" path="res://scenes/player/camera_controller.gd" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dpcvulalpx3fb" path="res://scenes/world_items/ball.tscn" id="2_0wfyh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
@@ -27,6 +27,14 @@ bounce = 1.0
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jyhfs"]
 points = PackedVector3Array(-0.5, -0.5, -0.5, 0.5, 0.5, 0.5, 0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, 0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, -0.5)
 
+[sub_resource type="TorusMesh" id="TorusMesh_sugp2"]
+inner_radius = 0.223
+outer_radius = 0.342
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jyhfs"]
+transparency = 1
+albedo_color = Color(1, 0, 1, 0.32941177)
+
 [node name="Main" type="Node3D" unique_id=1896153206]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1650751266]
@@ -44,15 +52,19 @@ mesh = SubResource("PlaneMesh_rm7t1")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/StaticBody3D" unique_id=1288317266]
 shape = SubResource("ConvexPolygonShape3D_sgp6g")
 
-[node name="Camera3D" parent="." unique_id=1784003912 instance=ExtResource("1_sugp2")]
-transform = Transform3D(1, 0, 0, 0, 0.6435981, 0.76536363, 0, -0.76536363, 0.6435981, 0, 7.0626345, 0.9321892)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1784003912]
+transform = Transform3D(1, 0, 0, 0, 0.45949417, 0.8881808, 0, -0.8881808, 0.45949417, 0, 11.925697, 0.9321892)
+fov = 85.0
 far = 200.0
+script = ExtResource("1_sugp2")
+camera_zoom = 6.5
 
-[node name="Player" parent="." unique_id=1671653665 node_paths=PackedStringArray("balls", "camera") instance=ExtResource("1_o5qli")]
+[node name="Player" parent="." unique_id=1671653665 node_paths=PackedStringArray("balls", "camera", "reticle") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1323128, 0)
 balls = [NodePath("../Ball"), NodePath("../Ball2"), NodePath("../Ball3"), NodePath("../Ball4"), NodePath("../Ball5")]
 camera = NodePath("../Camera3D")
 impulse_strength = 20.0
+reticle = NodePath("../Reticle")
 
 [node name="Ball" parent="." unique_id=833958440 instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1427083, 0.6106844, -5.015105)
@@ -108,3 +120,8 @@ physics_material_override = SubResource("PhysicsMaterial_sugp2")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=345909088]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
+
+[node name="Reticle" type="MeshInstance3D" parent="." unique_id=785764348]
+transform = Transform3D(1, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0)
+mesh = SubResource("TorusMesh_sugp2")
+surface_material_override/0 = SubResource("StandardMaterial3D_jyhfs")

@@ -11,17 +11,17 @@ const RAY_LENGTH = 1000
 
 var current_ball_index: int = 0
 
-
-@onready var reticle: MeshInstance3D = %Reticle
+@export var reticle: MeshInstance3D
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("Shoot"):
-		if current_ball_index >= balls.size():
-			current_ball_index = 0
-		balls[current_ball_index]._shoot(Vector2(reticle.position.x, reticle.position.z), impulse_strength)
-		current_ball_index = current_ball_index + 1
-		print("curr ball ", current_ball_index)
+		if balls[current_ball_index].get_can_shoot():
+			balls[current_ball_index]._shoot(Vector2(reticle.position.x, reticle.position.z), impulse_strength)
+			current_ball_index = current_ball_index + 1
+			if current_ball_index >= balls.size():
+				current_ball_index = 0
+			print("curr ball ", current_ball_index)
 	#if event is InputEventMouseButton and event.pressed and event.button_index == 1:
 		#var from = camera.project_ray_origin(event.position)
 		#var to = from + camera.project_ray_normal(event.position) * RAY_LENGTH

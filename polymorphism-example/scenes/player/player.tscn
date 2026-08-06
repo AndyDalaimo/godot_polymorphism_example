@@ -6,14 +6,6 @@
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rm7t1"]
 
-[sub_resource type="TorusMesh" id="TorusMesh_8afob"]
-inner_radius = 0.223
-outer_radius = 0.342
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dovo2"]
-transparency = 1
-albedo_color = Color(1, 0, 1, 0.32941177)
-
 [node name="Player" type="CharacterBody3D" unique_id=1671653665]
 script = ExtResource("1_3vyb7")
 
@@ -22,9 +14,3 @@ shape = SubResource("CapsuleShape3D_rm7t1")
 
 [node name="PlayerBody" type="MeshInstance3D" parent="." unique_id=1912460480]
 mesh = SubResource("CapsuleMesh_rm7t1")
-
-[node name="Reticle" type="MeshInstance3D" parent="." unique_id=2082013362]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.7894003)
-mesh = SubResource("TorusMesh_8afob")
-surface_material_override/0 = SubResource("StandardMaterial3D_dovo2")
