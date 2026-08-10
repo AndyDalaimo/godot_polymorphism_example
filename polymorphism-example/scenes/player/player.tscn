@@ -7,10 +7,19 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rm7t1"]
 
 [node name="Player" type="CharacterBody3D" unique_id=1671653665]
+collision_layer = 8
 script = ExtResource("1_3vyb7")
+SPEED = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=509481984]
 shape = SubResource("CapsuleShape3D_rm7t1")
 
 [node name="PlayerBody" type="MeshInstance3D" parent="." unique_id=1912460480]
 mesh = SubResource("CapsuleMesh_rm7t1")
+
+[node name="HeldShotTimer" type="Timer" parent="." unique_id=1444789991]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[connection signal="timeout" from="HeldShotTimer" to="." method="_on_held_shot_timer_timeout"]
