@@ -4,15 +4,25 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rm7t1"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rm7t1"]
 
-[node name="Player" type="CharacterBody3D" unique_id=1671653665]
+[node name="Player" type="CharacterBody3D" unique_id=1671653665 node_paths=PackedStringArray("ball_spawn_loc")]
 collision_layer = 8
 script = ExtResource("1_3vyb7")
 SPEED = 10.0
+ball_spawn_loc = NodePath("BallSpawnLoc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=509481984]
 shape = SubResource("CapsuleShape3D_rm7t1")
+
+[node name="PlayerCollision" type="Area3D" parent="." unique_id=155067365]
+collision_layer = 8
+collision_mask = 4
+
+[node name="PlayerCollisionShape" type="CollisionShape3D" parent="PlayerCollision" unique_id=837360994]
+shape = SubResource("CapsuleShape3D_8afob")
 
 [node name="PlayerBody" type="MeshInstance3D" parent="." unique_id=1912460480]
 mesh = SubResource("CapsuleMesh_rm7t1")
@@ -22,4 +32,9 @@ unique_name_in_owner = true
 wait_time = 0.2
 one_shot = true
 
+[node name="BallSpawnLoc" type="Node3D" parent="." unique_id=1345232023]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.171544)
+
+[connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
 [connection signal="timeout" from="HeldShotTimer" to="." method="_on_held_shot_timer_timeout"]

@@ -20,7 +20,7 @@ var current_ball_index: int = 0
 var can_player_shoot: bool = false
 
 @onready var held_shot_timer: Timer = %HeldShotTimer
-
+@export var ball_spawn_loc: Node3D
 
 func _ready() -> void:
 	init_ball_setup()
@@ -60,12 +60,16 @@ func _physics_process(_delta: float) -> void:
 	query.collide_with_areas = true
 	var result = get_world_3d().direct_space_state.intersect_ray(query)
 	if result:
-		reticle.position = result["position"]
+		## Reticle will be capped at Player's vertical position on the map
+		if result["position"].z < ball_spawn_loc.global_position.z:
+			reticle.position = result["position"]
+		else:
+			reticle.position = Vector3(result["position"].x, reticle.position.y, ball_spawn_loc.global_position.z)
 	
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("Left", "Right", "Up", "Down")
@@ -83,25 +87,33 @@ func init_ball_setup() -> void:
 	var i = 0
 	for b in balls:
 		b.inventory_index = i
-		b.reset_ball.connect(reset_ball)
-		b._reset(self.global_position) ## Set Balls to Player position
+		b.reset_ball.connect(_reset_ball)
+		#b._reset(self.global_position) ## Set Balls to Player position
+		b._reset(ball_spawn_loc.global_position) ## Set Balls to Player position
 		i += 1
 	can_player_shoot = true
-	
 
 func shoot_ball() -> void:
-	for b:Ball in balls:
+	for b in balls:
 		if b.get_can_shoot():
 			print("Curr Ball: ", b.inventory_index)
-			b._shoot(self.position, Vector2(reticle.position.x, reticle.position.z), impulse_strength)
+			#b._shoot(self.position, Vector2(reticle.position.x, reticle.position.z), impulse_strength)
+			b._shoot(ball_spawn_loc.global_position, Vector2(reticle.position.x, reticle.position.z), impulse_strength)
 			b.set_can_shoot(false)
 			break
 
-func reset_ball(index: int) -> void:
-	balls[index]._reset(self.global_position)
+func _reset_ball(index: int) -> void:
+	#balls[index]._reset(self.global_position)
+	balls[index]._reset(ball_spawn_loc.global_position)
 	balls[index].set_can_shoot(true)
 	current_ball_index = index
 
-
 func _on_held_shot_timer_timeout() -> void:
 	can_player_shoot = true
+
+func _on_player_collision_body_entered(body: Node3D) -> void:
+	if body is Ball:
+		var b:Ball = body
+		b.reset_ball.emit(b.inventory_index)
+		print(body.name, ": has entered")
+	pass # Replace with function body.

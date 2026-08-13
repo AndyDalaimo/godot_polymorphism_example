@@ -24,12 +24,18 @@ func _process(_delta: float) -> void:
 	pass
 
 ## Base SHOOT function that will be inherited by child classes
+## Child instances will handle logic for _secondary_shoot if implemented
 func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
 	visible = true
 	global_position = start_loc
 	var imp_direction = global_position.direction_to(Vector3(loc.x, 0.0, loc.y))
 	var impulse = imp_direction * impulse_str
 	apply_central_impulse(impulse)
+	_secondary_shoot() 
+
+## Secondary action that child classes will override for Special secondary actions
+func _secondary_shoot() -> void:
+	pass
 
 func _reset(loc: Vector3) -> void:
 	visible = false

@@ -2,7 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://c320r5qr1vffh" path="res://scenes/player/player.tscn" id="1_o5qli"]
 [ext_resource type="Script" uid="uid://dsbajg1xxa38p" path="res://scenes/player/camera_controller.gd" id="1_sugp2"]
-[ext_resource type="PackedScene" uid="uid://dpcvulalpx3fb" path="res://scenes/world_items/ball.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://dpcvulalpx3fb" path="res://scenes/world_items/Balls/ball.tscn" id="2_0wfyh"]
+[ext_resource type="PackedScene" uid="uid://btb8jslpn81or" path="res://scenes/world_items/Balls/SpecialBalls/SpecialBall.tscn" id="4_jyhfs"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sgp6g"]
 
@@ -61,8 +62,8 @@ camera_zoom = 6.5
 
 [node name="Player" parent="." unique_id=1671653665 node_paths=PackedStringArray("balls", "camera", "reticle") instance=ExtResource("1_o5qli")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1323128, 0)
-balls = [NodePath("../Ball"), NodePath("../Ball2"), NodePath("../Ball3"), NodePath("../Ball4"), NodePath("../Ball5")]
-impulse_strength = 30.0
+balls = [NodePath("../Ball"), NodePath("../Ball2"), NodePath("../Ball3"), NodePath("../Ball4"), NodePath("../SpecialBall"), NodePath("../Ball5"), NodePath("../Ball6"), NodePath("../Ball7"), NodePath("../Ball8"), NodePath("../SpecialBall2")]
+impulse_strength = 65.0
 autoshoot = true
 camera = NodePath("../Camera3D")
 reticle = NodePath("../Reticle")
@@ -79,55 +80,62 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6473097, 0.6106844, -5.0151
 [node name="Ball4" parent="." unique_id=1604018711 instance=ExtResource("2_0wfyh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0914283, 0.6106844, -5.015105)
 
-[node name="Ball5" parent="." unique_id=1624212946 instance=ExtResource("2_0wfyh")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.667312, 0.6106844, -5.015105)
+[node name="SpecialBall" parent="." unique_id=1924182761 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 0.8031711, 0.59574836, 0, -0.59574836, 0.8031711, -2.9820685, 0.25, -4.2131824)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=11236957]
+[node name="Ball5" parent="." unique_id=1554451462 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1427083, 0.6106844, -5.015105)
+
+[node name="Ball6" parent="." unique_id=116461628 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28664076, 0.6106844, -5.015105)
+
+[node name="Ball7" parent="." unique_id=135614504 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6473097, 0.6106844, -5.015105)
+
+[node name="Ball8" parent="." unique_id=461675338 instance=ExtResource("2_0wfyh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.0914283, 0.6106844, -5.015105)
+
+[node name="SpecialBall2" parent="." unique_id=970682213 instance=ExtResource("4_jyhfs")]
+transform = Transform3D(1, 0, 0, 0, 0.8031711, 0.59574836, 0, -0.59574836, 0.8031711, -2.9820685, 0.25, -4.2131824)
+
+[node name="LevelBounds_0" type="MeshInstance3D" parent="." unique_id=11236957]
 transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, -0.09799576, 1.0298386, 1.6695988)
 mesh = SubResource("BoxMesh_sugp2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" unique_id=727575136]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBounds_0" unique_id=727575136]
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D" unique_id=1932073322]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBounds_0/StaticBody3D" unique_id=1932073322]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
 
-[node name="MeshInstance3D3" type="MeshInstance3D" parent="." unique_id=1297092483]
+[node name="LevelBounds_1" type="MeshInstance3D" parent="." unique_id=1297092483]
 transform = Transform3D(-1.3915958e-06, 0, 1.205, 0, 2.875, 0, -31.836, 0, -5.2672224e-08, 13.581418, 1.0298386, -10.78527)
 mesh = SubResource("BoxMesh_sugp2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D3" unique_id=1919373189]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBounds_1" unique_id=1919373189]
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D3/StaticBody3D" unique_id=1627587363]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBounds_1/StaticBody3D" unique_id=1627587363]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
 
-[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1961974245]
+[node name="LevelBounds_2" type="MeshInstance3D" parent="." unique_id=1961974245]
 transform = Transform3D(-1.3915958e-06, 0, 1.205, 0, 2.875, 0, -31.836, 0, -5.2672224e-08, -13.778632, 1.0298386, -10.78527)
 mesh = SubResource("BoxMesh_sugp2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D4" unique_id=1933140887]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBounds_2" unique_id=1933140887]
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D4/StaticBody3D" unique_id=299371337]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBounds_2/StaticBody3D" unique_id=299371337]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
 
-[node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=1512009516]
+[node name="LevelBounds_3" type="MeshInstance3D" parent="." unique_id=1512009516]
 transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, -0.09799576, 1.0298386, -22.472353)
 mesh = SubResource("BoxMesh_sugp2")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2" unique_id=1213651895]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="StaticBody3D" type="StaticBody3D" parent="LevelBounds_3" unique_id=1213651895]
 physics_material_override = SubResource("PhysicsMaterial_sugp2")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/StaticBody3D" unique_id=345909088]
-transform = Transform3D(31.836, 0, 0, 0, 2.875, 0, 0, 0, 1.205, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LevelBounds_3/StaticBody3D" unique_id=345909088]
 shape = SubResource("ConvexPolygonShape3D_jyhfs")
 
 [node name="Reticle" type="MeshInstance3D" parent="." unique_id=785764348]
