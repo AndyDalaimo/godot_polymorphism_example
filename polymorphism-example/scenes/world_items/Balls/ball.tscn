@@ -11,7 +11,7 @@ height = 0.5
 
 [node name="Ball" type="RigidBody3D" unique_id=833958440]
 collision_layer = 4
-collision_mask = 9
+collision_mask = 25
 axis_lock_linear_y = true
 gravity_scale = 0.0
 script = ExtResource("1_oe72a")

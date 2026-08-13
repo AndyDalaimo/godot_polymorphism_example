@@ -12,4 +12,4 @@ func _ready() -> void:
 	#pass
 
 func _secondary_shoot() -> void:
-	print("THIS IS THE SECONDARY SHOOT FROM A SPECIALBALL")
+	pass

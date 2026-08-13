@@ -6,6 +6,7 @@ signal reset_ball(index: int)
 enum BALL_TYPE {DEFAULT, TYPE1, TYPE2}
 
 @export var ball_type: BALL_TYPE
+@export var damage: float = 2.5
 
 var can_shoot: bool = true
 var inventory_index: int = 0
