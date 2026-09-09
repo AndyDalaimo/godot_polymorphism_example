@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://e8y2dmak84el"]
+
+[ext_resource type="PackedScene" uid="uid://dpcvulalpx3fb" path="res://scenes/world_items/Balls/ball.tscn" id="1_rpbf5"]
+[ext_resource type="Script" uid="uid://caahngwfgal7e" path="res://src/special_ball.gd" id="2_ikdw6"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fof11"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="SpecialBall" unique_id=833958440 instance=ExtResource("1_rpbf5")]
+script = ExtResource("2_ikdw6")
+damage_type = 0
+damage = 5.0
+
+[node name="MeshInstance3D" parent="." index="1" unique_id=2003858166]
+surface_material_override/0 = SubResource("StandardMaterial3D_fof11")

@@ -2,32 +2,37 @@
 
 [ext_resource type="Script" uid="uid://k88insr8w1ba" path="res://src/enemy.gd" id="1_jlgdt"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_1unhx"]
-size = Vector3(2, 2, 2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1unhx"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1unhx"]
-bounce = 1.2
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jlgdt"]
+bounce = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7ytu1"]
-size = Vector3(1.9, 1.9, 1.9)
+size = Vector3(2, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
+albedo_color = Color(1, 1, 0.5764706, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7ytu1"]
+material = SubResource("StandardMaterial3D_tbgi4")
+size = Vector3(2, 2, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jlgdt"]
 size = Vector3(2.5, 2.5, 2.5)
 
-[node name="Enemy" type="MeshInstance3D" unique_id=195267312]
-mesh = SubResource("BoxMesh_1unhx")
-surface_material_override/0 = SubResource("StandardMaterial3D_1unhx")
+[node name="Enemy" type="RigidBody3D" unique_id=768984695]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+physics_material_override = SubResource("PhysicsMaterial_jlgdt")
+gravity_scale = 0.0
 script = ExtResource("1_jlgdt")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=828340360]
-collision_layer = 17
-physics_material_override = SubResource("PhysicsMaterial_1unhx")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1028938486]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1028938486]
 shape = SubResource("BoxShape3D_7ytu1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1247479198]
+unique_name_in_owner = true
+mesh = SubResource("BoxMesh_7ytu1")
 
 [node name="EnemyCollision" type="Area3D" parent="." unique_id=1014296711]
 collision_layer = 16

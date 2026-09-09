@@ -5,6 +5,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rm7t1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8afob"]
+radius = 0.7
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_rm7t1"]
 

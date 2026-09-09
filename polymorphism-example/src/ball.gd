@@ -3,16 +3,10 @@ extends RigidBody3D
 
 signal reset_ball(index: int)
 
-enum BALL_TYPE {DEFAULT, TYPE1, TYPE2}
-
-@export var ball_type: BALL_TYPE
 @export var damage: float = 2.5
 
 var can_shoot: bool = true
 var inventory_index: int = 0
-
-func _init_ball(_type: BALL_TYPE) -> void:
-	pass
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,12 +25,8 @@ func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
 	global_position = start_loc
 	var imp_direction = global_position.direction_to(Vector3(loc.x, 0.0, loc.y))
 	var impulse = imp_direction * impulse_str
-	apply_central_impulse(impulse)
-	_secondary_shoot() 
-
-## Secondary action that child classes will override for Special secondary actions
-func _secondary_shoot() -> void:
-	pass
+	apply_central_impulse(impulse) 
+	_secondary_shoot()
 
 func _reset(loc: Vector3) -> void:
 	visible = false
@@ -49,3 +39,7 @@ func get_can_shoot() -> bool:
 
 func set_can_shoot(value: bool) -> void:
 	can_shoot = value
+
+## virtual function to be overridden in child classes
+func _secondary_shoot() -> void:
+	pass

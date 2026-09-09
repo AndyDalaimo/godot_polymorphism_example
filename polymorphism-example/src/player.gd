@@ -27,22 +27,6 @@ func _ready() -> void:
 
 func _input(_event: InputEvent) -> void:
 	pass
-	#if event.is_action_pressed("Shoot"):
-		#shoot_ball()
-		#if balls[current_ball_index].get_can_shoot():
-			#balls[current_ball_index].set_can_shoot(false)
-			#balls[current_ball_index]._shoot(self.global_position, Vector2(reticle.position.x, reticle.position.z), impulse_strength)
-			#current_ball_index = current_ball_index + 1
-			#if current_ball_index >= balls.size():
-				#current_ball_index = 0
-			#print("curr ball ", current_ball_index)
-	#if event is InputEventMouseButton and event.pressed and event.button_index == 1:
-		#var from = camera.project_ray_origin(event.position)
-		#var to = from + camera.project_ray_normal(event.position) * RAY_LENGTH
-		#var query = PhysicsRayQueryParameters3D.create(from, to)
-		#query.collide_with_areas = true
-		#var result = get_world_3d().direct_space_state.intersect_ray(query)
-		#reticle.position = result["position"]
 
 func _physics_process(_delta: float) -> void:
 	## Add the gravity.
@@ -103,7 +87,6 @@ func shoot_ball() -> void:
 			break
 
 func _reset_ball(index: int) -> void:
-	#balls[index]._reset(self.global_position)
 	balls[index]._reset(ball_spawn_loc.global_position)
 	balls[index].set_can_shoot(true)
 	current_ball_index = index

@@ -12,7 +12,7 @@ config_version=5
 
 config/name="polymorphism_example"
 run/main_scene="uid://c0s3isv8f0jh2"
-config/features=PackedStringArray("4.6", "Mobile")
+config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
 [display]
