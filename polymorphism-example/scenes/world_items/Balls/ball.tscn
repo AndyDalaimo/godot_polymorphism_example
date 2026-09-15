@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dpcvulalpx3fb"]
 
 [ext_resource type="Script" uid="uid://dlegkiqahfmxc" path="res://src/ball.gd" id="1_oe72a"]
+[ext_resource type="PackedScene" uid="uid://c0b4yq4bm6ecx" path="res://scenes/components/damage_component.tscn" id="2_gvutp"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_rm7t1"]
 radius = 0.25
@@ -9,15 +10,18 @@ radius = 0.25
 radius = 0.25
 height = 0.5
 
-[node name="Ball" type="RigidBody3D" unique_id=833958440]
+[node name="Ball" type="RigidBody3D" unique_id=833958440 node_paths=PackedStringArray("damage_comp")]
 collision_layer = 4
 collision_mask = 25
 axis_lock_linear_y = true
 gravity_scale = 0.0
 script = ExtResource("1_oe72a")
+damage_comp = NodePath("DamageComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1007522138]
 shape = SubResource("SphereShape3D_rm7t1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2003858166]
 mesh = SubResource("SphereMesh_rm7t1")
+
+[node name="DamageComponent" parent="." unique_id=884890147 instance=ExtResource("2_gvutp")]

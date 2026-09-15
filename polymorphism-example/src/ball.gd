@@ -3,7 +3,7 @@ extends RigidBody3D
 
 signal reset_ball(index: int)
 
-@export var damage: float = 2.5
+@export var damage_comp: DamageComponent
 
 var can_shoot: bool = true
 var inventory_index: int = 0

@@ -15,6 +15,10 @@ run/main_scene="uid://c0s3isv8f0jh2"
 config/features=PackedStringArray("4.7", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Utils="*uid://bls500scr4863"
+
 [display]
 
 window/size/viewport_width=1920
@@ -25,6 +29,7 @@ window/stretch/aspect="expand"
 [file_customization]
 
 folder_colors={
+"res://autoloads/": "orange",
 "res://scenes/": "purple"
 }
 

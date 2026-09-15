@@ -1,10 +1,6 @@
 class_name SpecialBall
 extends Ball
 
-enum DAMAGE_TYPE{NONE, POISON, BLEED, LIGHTNING}
-
-@export var damage_type: DAMAGE_TYPE
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -26,16 +22,16 @@ func _secondary_shoot() -> void:
 func on_reset_action() -> bool:
 	return true
 
-## Secondary action after a special ball has dealt base damage to Enemy
-func on_deal_damage(enemy: Enemy) -> void:
-	match (damage_type):
-		DAMAGE_TYPE.POISON:
-			var material = StandardMaterial3D.new()
-			material.albedo_color = Color(0.253, 0.05, 0.182, 1.0)
-			if !enemy.mesh.get_surface_override_material(0):
-				enemy.mesh.set_surface_override_material(0, material)
-			pass
-		DAMAGE_TYPE.BLEED:
-			pass
-		DAMAGE_TYPE.LIGHTNING:
-			pass
+### Secondary action after a special ball has dealt base damage to Enemy
+#func on_deal_damage(enemy: Enemy) -> void:
+	#match (damage_type):
+		#Utils.DAMAGE_TYPE.POISON:
+			#var material = StandardMaterial3D.new()
+			#material.albedo_color = Color(0.253, 0.05, 0.182, 1.0)
+			#if !enemy.mesh.get_surface_override_material(0):
+				#enemy.mesh.set_surface_override_material(0, material)
+			#pass
+		#Utils.DAMAGE_TYPE.BLEED:
+			#pass
+		#Utils.DAMAGE_TYPE.LIGHTNING:
+			#pass
