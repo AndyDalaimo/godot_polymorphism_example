@@ -79,7 +79,7 @@ Right={
 [layer_names]
 
 3d_physics/layer_2="Bounds"
-3d_physics/layer_3="Layer 3"
+3d_physics/layer_3="Ball"
 3d_physics/layer_4="Player"
 3d_physics/layer_5="enemy"
 

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://c320r5qr1vffh"]
 
 [ext_resource type="Script" uid="uid://d1i12h780q7x" path="res://src/player.gd" id="1_3vyb7"]
+[ext_resource type="PackedScene" uid="uid://c7fboarh3thpb" path="res://scenes/components/health_component.tscn" id="2_dovo2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rm7t1"]
 
@@ -36,6 +37,9 @@ one_shot = true
 [node name="BallSpawnLoc" type="Node3D" parent="." unique_id=1345232023]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.171544)
+
+[node name="HealthComponent" parent="." unique_id=2007404961 node_paths=PackedStringArray("parent") instance=ExtResource("2_dovo2")]
+parent = NodePath("..")
 
 [connection signal="body_entered" from="PlayerCollision" to="." method="_on_player_collision_body_entered"]
 [connection signal="timeout" from="HeldShotTimer" to="." method="_on_held_shot_timer_timeout"]

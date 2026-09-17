@@ -1,7 +1,7 @@
 class_name DamageComponent
 extends Node
 
-@export var base_damage: float = 2.5
+@export var base_damage: float = 2.5 ## This is the base damage dealt 
 @export var damage_type: Utils.DAMAGE_TYPE
 
 # Called when the node enters the scene tree for the first time.

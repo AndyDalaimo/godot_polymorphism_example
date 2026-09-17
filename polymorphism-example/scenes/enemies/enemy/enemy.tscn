@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://k88insr8w1ba" path="res://src/enemy.gd" id="1_jlgdt"]
 [ext_resource type="PackedScene" uid="uid://c7fboarh3thpb" path="res://scenes/components/health_component.tscn" id="2_7ytu1"]
+[ext_resource type="PackedScene" uid="uid://bxpvgjmktsh2n" path="res://scenes/components/damageable_component.tscn" id="3_5v1eo"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_jlgdt"]
 bounce = 1.0
@@ -16,10 +17,10 @@ albedo_color = Color(1, 1, 0.5764706, 1)
 material = SubResource("StandardMaterial3D_tbgi4")
 size = Vector3(2, 2, 2)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_jlgdt"]
-size = Vector3(2.5, 2.5, 2.5)
+[sub_resource type="BoxShape3D" id="BoxShape3D_2jqkb"]
+size = Vector3(2.1, 2.1, 2.1)
 
-[node name="Enemy" type="RigidBody3D" unique_id=768984695 node_paths=PackedStringArray("health_comp")]
+[node name="Enemy" type="RigidBody3D" unique_id=768984695]
 axis_lock_linear_y = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -27,7 +28,6 @@ axis_lock_angular_z = true
 physics_material_override = SubResource("PhysicsMaterial_jlgdt")
 gravity_scale = 0.0
 script = ExtResource("1_jlgdt")
-health_comp = NodePath("HealthComponent")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1028938486]
 shape = SubResource("BoxShape3D_7ytu1")
@@ -36,14 +36,13 @@ shape = SubResource("BoxShape3D_7ytu1")
 unique_name_in_owner = true
 mesh = SubResource("BoxMesh_7ytu1")
 
-[node name="EnemyCollision" type="Area3D" parent="." unique_id=1014296711]
-collision_layer = 16
-collision_mask = 5
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyCollision" unique_id=1477301108]
-shape = SubResource("BoxShape3D_jlgdt")
-
 [node name="HealthComponent" parent="." unique_id=2007404961 node_paths=PackedStringArray("parent") instance=ExtResource("2_7ytu1")]
 parent = NodePath("..")
 
-[connection signal="body_entered" from="EnemyCollision" to="." method="_on_enemy_collision_body_entered"]
+[node name="DamageableComponent" parent="." unique_id=919256470 node_paths=PackedStringArray("health_comp") instance=ExtResource("3_5v1eo")]
+health_comp = NodePath("../HealthComponent")
+
+[node name="CollisionShape3D" parent="DamageableComponent/CollisionArea" parent_id_path=PackedInt32Array(919256470, 501281454) index="0" unique_id=343455910]
+shape = SubResource("BoxShape3D_2jqkb")
+
+[editable path="DamageableComponent"]
