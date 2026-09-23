@@ -25,3 +25,10 @@ shape = SubResource("SphereShape3D_rm7t1")
 mesh = SubResource("SphereMesh_rm7t1")
 
 [node name="DamageComponent" parent="." unique_id=884890147 instance=ExtResource("2_gvutp")]
+
+[node name="ResetTimer" type="Timer" parent="." unique_id=1945804130]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[connection signal="timeout" from="ResetTimer" to="." method="_on_reset_timer_timeout"]

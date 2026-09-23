@@ -135,5 +135,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 1, -16)
 [node name="Enemy2" parent="." unique_id=1239853572 instance=ExtResource("5_tbgi4")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -16)
 
-[node name="Enemy_Large" parent="." unique_id=1050848479 instance=ExtResource("6_tefeu")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1, -15)
+[node name="Enemy_Large" parent="." unique_id=379804723 instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.187221, 1, -13.18932)

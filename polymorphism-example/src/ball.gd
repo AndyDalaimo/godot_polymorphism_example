@@ -5,6 +5,8 @@ signal reset_ball(index: int)
 
 @export var damage_comp: DamageComponent
 
+@onready var reset_timer: Timer = %ResetTimer
+
 var can_shoot: bool = true
 var inventory_index: int = 0
 
@@ -21,6 +23,7 @@ func _process(_delta: float) -> void:
 ## Base SHOOT function that will be inherited by child classes
 ## Child instances will handle logic for _secondary_shoot if implemented
 func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
+	%ResetTimer.start()
 	visible = true
 	global_position = start_loc
 	var imp_direction = global_position.direction_to(Vector3(loc.x, 0.0, loc.y))
@@ -29,6 +32,8 @@ func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
 	_secondary_shoot()
 
 func _reset(loc: Vector3) -> void:
+	if !%ResetTimer.is_stopped(): ## This will call only if ball is reset before timer triggered
+		%ResetTimer.stop()
 	visible = false
 	set_can_shoot(true)
 	linear_velocity = Vector3.ZERO
@@ -43,3 +48,8 @@ func set_can_shoot(value: bool) -> void:
 ## virtual function to be overridden in child classes
 func _secondary_shoot() -> void:
 	pass
+
+## Reset ball after time out. This will be ignored if 
+func _on_reset_timer_timeout() -> void:
+	reset_ball.emit(inventory_index)
+	pass # Replace with function body.
