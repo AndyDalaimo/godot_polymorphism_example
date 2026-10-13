@@ -5,14 +5,12 @@ extends Ball
 func _ready() -> void:
 	pass # Replace with function body.
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-	#pass
 
 ## Overridden function from parent class
-func _secondary_shoot() -> void:
+## Calls parent shoot then calls any secondary, special action to be performed
+func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
+	super(start_loc, loc, impulse_str)
 	print("This is the secondary action for a 'Special Ball'")
-	pass
 
 ## -------------------------------------------------------------------
 ## Secondary actions to be overridden by child classes (Special Balls)

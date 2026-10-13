@@ -3,10 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bv6sckggd6l8p" path="res://scenes/enemies/enemy/enemy.tscn" id="1_kftyx"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_kftyx"]
-size = Vector3(5.1, 2.1, 2.1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_5v1eo"]
-size = Vector3(5.1, 2.1, 2.1)
+size = Vector3(5, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tlt5d"]
 albedo_color = Color(1, 0, 0, 1)
@@ -15,15 +12,20 @@ albedo_color = Color(1, 0, 0, 1)
 material = SubResource("StandardMaterial3D_tlt5d")
 size = Vector3(5, 2, 2)
 
-[node name="Enemy_Large" unique_id=768984695 instance=ExtResource("1_kftyx")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_rinfa"]
+size = Vector3(5.2, 2.2, 2.2)
 
-[node name="DamageableComponent_CollisionArea#CollisionShape3D" type="CollisionShape3D" parent="." index="0" unique_id=1028938486]
+[node name="Enemy_Large" unique_id=768984695 instance=ExtResource("1_kftyx")]
+movement_speed = 0.2
+
+[node name="CollisionShape3D" parent="." index="0" unique_id=93350935]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0072774887, 0, 0)
 shape = SubResource("BoxShape3D_kftyx")
 
-[node name="DamageableComponent_CollisionArea#CollisionShape3D2" type="CollisionShape3D" parent="." index="1" unique_id=93350935]
-shape = SubResource("BoxShape3D_5v1eo")
-
-[node name="MeshInstance3D" parent="." index="2" unique_id=1247479198]
+[node name="MeshInstance3D" parent="." index="1" unique_id=1247479198]
 mesh = SubResource("BoxMesh_rinfa")
+
+[node name="CollisionShape3D" parent="CollisionArea" parent_id_path=PackedInt32Array(1731440727) index="0" unique_id=640737840]
+shape = SubResource("BoxShape3D_rinfa")
 
 [editable path="DamageableComponent"]

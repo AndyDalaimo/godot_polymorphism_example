@@ -21,7 +21,6 @@ func _process(_delta: float) -> void:
 	pass
 
 ## Base SHOOT function that will be inherited by child classes
-## Child instances will handle logic for _secondary_shoot if implemented
 func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
 	%ResetTimer.start()
 	visible = true
@@ -29,7 +28,6 @@ func _shoot(start_loc: Vector3, loc: Vector2, impulse_str: float) -> void:
 	var imp_direction = global_position.direction_to(Vector3(loc.x, 0.0, loc.y))
 	var impulse = imp_direction * impulse_str
 	apply_central_impulse(impulse) 
-	_secondary_shoot()
 
 func _reset(loc: Vector3) -> void:
 	if !%ResetTimer.is_stopped(): ## This will call only if ball is reset before timer triggered
@@ -45,9 +43,6 @@ func get_can_shoot() -> bool:
 func set_can_shoot(value: bool) -> void:
 	can_shoot = value
 
-## virtual function to be overridden in child classes
-func _secondary_shoot() -> void:
-	pass
 
 ## Reset ball after time out. This will be ignored if 
 func _on_reset_timer_timeout() -> void:

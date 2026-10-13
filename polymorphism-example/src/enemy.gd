@@ -5,7 +5,9 @@ extends RigidBody3D
 @export var damageable_comp: DamageableComponent
 @export var damage_comp: DamageComponent
 
+@export var movement_speed: float = 0.8
 @onready var mesh: MeshInstance3D = %MeshInstance3D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,13 +16,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	linear_velocity.z = 0.8
+	linear_velocity.z = movement_speed
 	pass
 
-func _on_collision_area_body_entered(body: Node3D) -> void:
-	if body is Ball:
-		print("DO DAMAGE")
-		if health_comp:
-			health_comp._reduce_health(body.damage_comp._on_damage())
-	if body is SpecialBall: ## TESTING
-		print("This is a Special Ball doing damage")
+#func _on_collision_area_body_entered(body: Node3D) -> void:
+	#if body is Ball:
+		#print("DAMAGED")
+		#if health_comp:
+			#health_comp._reduce_health(body.damage_comp._on_damage())
+	#if body is SpecialBall: ## TESTING
+		#print("This is a Special Ball doing damage")

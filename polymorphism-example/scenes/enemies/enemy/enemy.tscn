@@ -9,7 +9,7 @@
 bounce = 1.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rm7t1"]
-size = Vector3(2, 2, 2)
+size = Vector3(2.5177002, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tbgi4"]
 albedo_color = Color(1, 1, 0.5764706, 1)
@@ -59,6 +59,6 @@ health_component = NodePath("../HealthComponent")
 unique_name_in_owner = true
 base_damage = 5.0
 
-[connection signal="body_entered" from="CollisionArea" to="." method="_on_collision_area_body_entered"]
+[connection signal="body_entered" from="CollisionArea" to="DamageableComponent" method="_on_collision_area_body_entered"]
 
 [editable path="DamageableComponent"]

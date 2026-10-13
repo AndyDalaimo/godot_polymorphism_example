@@ -36,7 +36,7 @@ one_shot = true
 
 [node name="BallSpawnLoc" type="Node3D" parent="." unique_id=1345232023]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.171544)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.3307102)
 
 [node name="HealthComponent" parent="." unique_id=2007404961 node_paths=PackedStringArray("parent") instance=ExtResource("2_dovo2")]
 parent = NodePath("..")
